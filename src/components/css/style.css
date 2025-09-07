@@ -151,6 +151,10 @@ body.light-theme .section-title {
     transform: translateY(0);
 }
 
+body.menu-active .sidebar {
+    transform: translateX(0);
+}
+
 @media (max-width: 900px) {
     .container {
         width: 95%;
