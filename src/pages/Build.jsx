@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import '../components/css/Build.css';
 
 const Build = () => {
     useEffect(() => {
@@ -10,6 +11,7 @@ const Build = () => {
             offset: 100
         });
     }, []);
+
     return (
         <div className="page-content" id="build">
             <div className="container">
@@ -18,24 +20,48 @@ const Build = () => {
                         <div className="build-section">
                             <h1>Looking for building/maintaining?</h1>
                         </div>
+                        
                         <div className="build-section" data-aos="fade-up" data-aos-delay="100">
-                            <h2><i className="fas fa-code-branch"></i> Source</h2>
-                            <p>You can get source by searching <b><a href="https://github.com/horizonv2/android" target="_blank" style={{ color: 'var(--accent)' }}>HorizonV2</a></b> on GitHub.</p>
+                            <h2>
+                                <i className="fas fa-code-branch"></i> Source
+                            </h2>
+                            <p>
+                                You can get source by searching <b>
+                                    <a 
+                                        href="https://github.com/horizonv2/android" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                    >
+                                        HorizonV2
+                                    </a>
+                                </b> on GitHub.
+                            </p>
                         </div>
-                        <hr style={{ border: '1px solid rgba(255, 255, 255, 0.1)', margin: '30px 0' }} />
+                        
+                        <hr />
+                        
                         <div className="build-section" data-aos="fade-up" data-aos-delay="200">
-                            <h2><i className="fas fa-book"></i> Building Guide</h2>
+                            <h2>
+                                <i className="fas fa-book"></i> Building Guide
+                            </h2>
                             <p>Here's a tutorial on making custom ROM for beginners.</p>
-                            <a href="https://www.youtube.com/playlist?list=PLrDdnF-jkUITWPgIDbmKuYrNgybmLM4WR" target="_blank" className="btn" style={{ marginTop: '15px' }}>
-                                <i className="fab fa-youtube" style={{ color: '#ff0000' }}></i> YouTube Tutorial
+                            <a 
+                                href="https://www.youtube.com/playlist?list=PLrDdnF-jkUITWPgIDbmKuYrNgybmLM4WR" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="btn"
+                            >
+                                <i className="fab fa-youtube"></i> YouTube Tutorial
                             </a>
                         </div>
+                        
                         <div className="build-section" data-aos="fade-up" data-aos-delay="300">
-                            <h2><i className="fas fa-tasks"></i> Maintainership Requirements</h2>
-                            <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '10px', marginTop: '15px' }}>
+                            <h2>
+                                <i className="fas fa-tasks"></i> Maintainership Requirements
+                            </h2>
+                            <div className="requirements-box">
                                 <p>To become an official maintainer for HorizonDroid, you must meet the following requirements:</p>
-                                <ul style={{ margin: '15px 0 15px 20px' }}>
-                                    {/* List items */}
+                                <ul>
                                     <li>You <b>MUST</b> own the device. Blind and untested builds aren't allowed. Unified, and devices with minimal hardware changes are also allowed to be maintained.</li>
                                     <li>You must have basic git (cherry-pick, squash, etc) knowledge.</li>
                                     <li>Your trees should be <b>clean</b> and should have <b>proper authorships</b> and <b>commit names</b>.</li>
@@ -49,11 +75,12 @@ const Build = () => {
                             </div>
                         </div>
 
-                         <div className="build-section" data-aos="fade-up" data-aos-delay="400">
-                            <h2><i className="fas fa-tasks"></i> Device Requirements</h2>
-                            <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '10px', marginTop: '15px' }}>
-                                <ul style={{ margin: '15px 0 15px 20px' }}>
-                                    {/* List items */}
+                        <div className="build-section" data-aos="fade-up" data-aos-delay="400">
+                            <h2>
+                                <i className="fas fa-tasks"></i> Device Requirements
+                            </h2>
+                            <div className="requirements-box">
+                                <ul>
                                     <li>All devices <b>MUST</b> support audio playback for media content.</li>
                                     <li>Phones <b>MUST</b> support in-call audio.</li>
                                     <li>Phones <b>MUST</b> support speaker audio.</li>
@@ -81,7 +108,7 @@ const Build = () => {
                                     <li>All devices with a gyroscope <b>MUST</b> support the gyroscope.</li>
                                     <li>All devices with a proximity sensor <b>MUST</b> support the proximity sensor.</li>
                                     <li>All devices with a light sensor <b>MUST</b> support the light sensor.</li>
-                                    <li>All other sensors supported by a device’s stock OS <b>SHOULD</b> be supported.</li>
+                                    <li>All other sensors supported by a device's stock OS <b>SHOULD</b> be supported.</li>
                                     <li>All devices <b>MUST</b> be configured for SELinux Enforcing. Exceptions <b>MAY</b> be made for this.</li>
                                     <li>All devices <b>SHOULD</b> support LiveDisplay. Exceptions <b>MAY</b> be made for this.</li>
                                     <li>All commits <b>MUST</b> have proper authorship to the author of the commits.</li>
@@ -89,15 +116,30 @@ const Build = () => {
                                     <li>If your build is deemed unstable by the team you <b>MAY NOT</b> be allowed to maintain officially.</li>
                                     <li>Exceptions <b>MAY</b> be made for some of these mentioned requirements.</li>
                                 </ul>
-                                <br/>
-                                <p>This document uses work from LineageOS' <a href="https://github.com/LineageOS/charter/blob/master/device-support-requirements.md" target="_blank" style={{ color: 'var(--accent)' }}>device support requirements</a> which is licensed under CC-BY-3.0, some modifications were made to it.</p>
+                                <br />
+                                <p>
+                                    This document uses work from LineageOS' <a 
+                                        href="https://github.com/LineageOS/charter/blob/master/device-support-requirements.md" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                    >
+                                        device support requirements
+                                    </a> which is licensed under CC-BY-3.0, some modifications were made to it.
+                                </p>
                             </div>
                         </div>
 
                         <div className="build-section" data-aos="fade-up" data-aos-delay="500">
-                            <h2><i className="fas fa-check-circle"></i> Eligible?</h2>
+                            <h2>
+                                <i className="fas fa-check-circle"></i> Eligible?
+                            </h2>
                             <p>If you meet all the requirements, you can apply to become an official maintainer.</p>
-                            <a href="https://t.me/superxorn" target="_blank" className="btn" style={{ marginTop: '15px' }}>
+                            <a 
+                                href="https://t.me/superxorn" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="btn"
+                            >
                                 <i className="fas fa-file-alt"></i> Apply Now
                             </a>
                         </div>
@@ -107,4 +149,5 @@ const Build = () => {
         </div>
     );
 };
+
 export default Build;
