@@ -151,11 +151,33 @@ body.light-theme .section-title {
     transform: translateY(0);
 }
 
+@media (min-width: 901px) {
+    .desktop-navbar {
+        display: flex;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+
+    .main-content {
+        padding-top: 120px;
+    }
+}
+
 body.menu-active .sidebar {
     transform: translateX(0);
 }
 
 @media (max-width: 900px) {
+    .desktop-navbar {
+        display: none;
+    }
+
+    .mobile-header {
+        display: block;
+    }
+
     .container {
         width: 95%;
         padding: 15px 0;
