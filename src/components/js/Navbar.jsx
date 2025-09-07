@@ -50,9 +50,9 @@ const Navbar = () => {
               <i className="fas fa-home"></i>
               <span>Home</span>
             </NavLink>
-            <NavLink to="/downloads" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/devices" className={({ isActive }) => isActive ? 'active' : ''}>
               <i className="fas fa-download"></i>
-              <span>Downloads</span>
+              <span>Devices</span>
             </NavLink>
             <NavLink to="/build" className={({ isActive }) => isActive ? 'active' : ''}>
               <i className="fas fa-code"></i>
@@ -92,9 +92,9 @@ const Navbar = () => {
             <i className="fas fa-home"></i>
             <span>Home</span>
           </NavLink>
-          <NavLink to="/downloads" onClick={closeMenu}>
+          <NavLink to="/devices" onClick={closeMenu}>
             <i className="fas fa-download"></i>
-            <span>Downloads</span>
+            <span>Devices</span>
           </NavLink>
           <NavLink to="/build" onClick={closeMenu}>
             <i className="fas fa-code"></i>
