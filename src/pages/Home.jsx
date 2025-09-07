@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import '../components/css/Home.css';
 
 const Home = () => {
     useEffect(() => {
@@ -10,7 +11,6 @@ const Home = () => {
             offset: 100
         });
 
-        // Carousel Logic
         const carousel = document.querySelector(".carousel");
         if (!carousel) return;
 
@@ -74,43 +74,64 @@ const Home = () => {
         goToSlide(0);
         startInterval();
 
-        prevBtn.addEventListener("click", prevSlide);
-        nextBtn.addEventListener("click", nextSlide);
-        controlsContainer.addEventListener("click", (e) => {
+        prevBtn?.addEventListener("click", prevSlide);
+        nextBtn?.addEventListener("click", nextSlide);
+        controlsContainer?.addEventListener("click", (e) => {
             if (e.target.classList.contains("carousel-control")) {
                 goToSlide(parseInt(e.target.dataset.slideIndex));
             }
         });
 
         const carouselContainer = carousel.parentElement;
-        carouselContainer.addEventListener("mouseenter", () => clearInterval(interval));
-        carouselContainer.addEventListener("mouseleave", startInterval);
+        carouselContainer?.addEventListener("mouseenter", () => clearInterval(interval));
+        carouselContainer?.addEventListener("mouseleave", startInterval);
 
-        window.addEventListener("resize", () => {
+        const handleResize = () => {
             updateItemsPerSlide();
             goToSlide(currentIndex);
-        });
+        };
 
-        // Changelog Logic
+        window.addEventListener("resize", handleResize);
+
         const changelogContentDiv = document.getElementById('changelog-content');
         if (changelogContentDiv) {
             const changelogUrl = 'https://raw.githubusercontent.com/HorizonV2/horizon_changelogs/refs/heads/lineage-22.2/README.md';
             fetch(changelogUrl)
                 .then(response => response.text())
                 .then(markdownText => {
-                    changelogContentDiv.innerHTML = marked.parse(markdownText);
+                    if (typeof marked !== 'undefined') {
+                        changelogContentDiv.innerHTML = marked.parse(markdownText);
+                    } else {
+                        changelogContentDiv.innerHTML = `<pre>${markdownText}</pre>`;
+                    }
+                })
+                .catch(error => {
+                    changelogContentDiv.innerHTML = '<p>Failed to load changelog. Please check our GitHub repository.</p>';
+                    console.error('Error loading changelog:', error);
                 });
         }
         
         const changelogToggle = document.getElementById('changelog-toggle');
         const changelogContainer = document.getElementById('changelog-container');
         if(changelogToggle && changelogContainer) {
-            changelogToggle.addEventListener('click', () => {
+            const handleToggleClick = () => {
                 changelogContainer.classList.toggle('expanded');
                 changelogToggle.classList.toggle('expanded');
-            });
+            };
+            
+            changelogToggle.addEventListener('click', handleToggleClick);
+            
+            return () => {
+                changelogToggle.removeEventListener('click', handleToggleClick);
+            };
         }
 
+        return () => {
+            clearInterval(interval);
+            prevBtn?.removeEventListener("click", prevSlide);
+            nextBtn?.removeEventListener("click", nextSlide);
+            window.removeEventListener("resize", handleResize);
+        };
 
     }, []);
 
@@ -131,7 +152,7 @@ const Home = () => {
 
                 <div className="section full-screen-section" id="welcome-section" data-aos="fade-up" data-aos-duration="1000">
                     <p style={{ fontSize: '2.5rem' }}>
-                        <big>Once again, welcome to my <a href="https://t.me/superxorn" target="_blank" style={{ color: 'inherit' }}>(superxorn)</a> droid world.</big>
+                        <big>Once again, welcome to my <a href="https://t.me/superxorn" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>(superxorn)</a> droid world.</big>
                         <br />
                         <big>I hope you would like, love it.</big>
                     </p>
@@ -140,13 +161,12 @@ const Home = () => {
                 <div className="section">
                     <h2 className="section-title" data-aos="fade-up">Better than stock ROM?</h2>
                     <div className="features">
-                        {/* Feature Cards */}
                         <div className="feature-card" data-aos="fade-up" data-aos-delay="100">
                             <div className="feature-icon"><i className="fas fa-check-circle"></i></div>
                             <h3>Bloatware Free</h3>
                             <p>Pure Android experience without unnecessary apps</p>
                         </div>
-                         <div className="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div className="feature-card" data-aos="fade-up" data-aos-delay="200">
                             <div className="feature-icon"><i className="fas fa-bolt"></i></div>
                             <h3>Lightning Fast</h3>
                             <p>Less Loading<span className="loading-dots"><span></span><span></span><span></span></span></p>
@@ -173,9 +193,11 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="full-screen-section" id="labs-image-section" data-aos="zoom-in" data-aos-duration="800">
                     <img src="/img/labs.png" alt="HorizonLabs UI" />
                 </div>
+
                 <div className="section">
                     <h2 className="section-title" data-aos="fade-up">What about UI?</h2>
                     <p style={{ textAlign: 'center', fontSize: '1.4rem', marginBottom: '30px' }} data-aos="fade-up">
@@ -210,14 +232,32 @@ const Home = () => {
                         I hope you liked them.
                     </p>
                 </div>
+
                 <div className="section">
                     <h2 className="section-title" data-aos="fade-up">Where can I get changelogs?</h2>
-                    <div style={{ maxWidth: '800px', margin: '0 auto', background: 'var(--card-bg)', borderRadius: '15px', padding: '30px', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.1)' }} data-aos="fade-up">
+                    <div style={{ 
+                        maxWidth: '800px', 
+                        margin: '0 auto', 
+                        background: 'var(--card-bg)', 
+                        borderRadius: '15px', 
+                        padding: '30px', 
+                        backdropFilter: 'blur(10px)', 
+                        border: '1px solid rgba(255, 255, 255, 0.1)' 
+                    }} data-aos="fade-up">
                         <p>We have listed the changelogs on our source and we also share them on our build support and community groups after every new update.</p>
                         <p style={{ marginTop: '15px' }}>Don't worry you can check them here too ;)</p>
 
-                        <div style={{ marginTop: '30px', background: 'rgba(0, 0, 0, 0.3)', padding: '20px', borderRadius: '10px' }}>
-                             <h3 id="changelog-toggle" style={{ marginBottom: '15px', color: 'var(--accent)', cursor: 'pointer' }}>
+                        <div style={{ 
+                            marginTop: '30px', 
+                            background: 'rgba(0, 0, 0, 0.3)', 
+                            padding: '20px', 
+                            borderRadius: '10px' 
+                        }}>
+                            <h3 id="changelog-toggle" style={{ 
+                                marginBottom: '15px', 
+                                color: 'var(--accent)', 
+                                cursor: 'pointer' 
+                            }}>
                                 Latest Changelog <span id="toggle-icon">▼</span>
                             </h3>
                             <div id="changelog-container">
@@ -225,13 +265,21 @@ const Home = () => {
                                     <p>Loading changelog...</p>
                                 </div>
                                 <p style={{ marginTop: '15px', fontStyle: 'italic' }}>
-                                    Full changelog available on our <a id="github-changelog-link" href="https://github.com/HorizonV2/horizon_changelogs/tree/lineage-22.2" style={{ color: 'var(--accent)' }}>GitHub repository</a>
+                                    Full changelog available on our{' '}
+                                    <a 
+                                        id="github-changelog-link" 
+                                        href="https://github.com/HorizonV2/horizon_changelogs/tree/lineage-22.2" 
+                                        style={{ color: 'var(--accent)' }}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        GitHub repository
+                                    </a>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );
