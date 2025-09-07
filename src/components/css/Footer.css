@@ -1,0 +1,39 @@
+/* src/components/Footer.css */
+
+.footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+body.light-theme .footer {
+    color: var(--light-secondary);
+}
+
+.great-day {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--accent);
+    animation: float 4s ease-in-out infinite;
+}
+
+body.light-theme .great-day {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.credit {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.credit a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+body.light-theme .credit a {
+    color: var(--primary);
+}
