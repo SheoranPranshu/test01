@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
 
-    return (
-        <nav className="navbar">
-            <div className="container nav-container">
-                <NavLink to="/" className="logo">
-                    <img src="/img/logo.png" alt="HorizonDroid Logo" />
-                    HorizonDroid
-                </NavLink>
-                <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
-                    <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
-                    <NavLink to="/downloads" onClick={() => setMenuOpen(false)}>Downloads</NavLink>
-                    <NavLink to="/build" onClick={() => setMenuOpen(false)}>Build</NavLink>
-                </div>
-                <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-                    <i className={menuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
-                </div>
-            </div>
-        </nav>
-    );
+  useEffect(() => {
+    if (menuActive) {
+      document.body.classList.add('menu-active');
+    } else {
+      document.body.classList.remove('menu-active');
+    }
+  }, [menuActive]);
+
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
+
+  const closeMenu = () => {
+    setMenuActive(false);
+  };
+
+  return (
+    <>
+      <nav className="navbar">
+        <div className="container nav-container">
+          <NavLink to="/" className="logo">
+            <img src="/img/logo.png" alt="Logo" />
+            HorizonDroid
+          </NavLink>
+          <div className="nav-links">
+            <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+            <NavLink to="/downloads" onClick={closeMenu}>Downloads</NavLink>
+            <NavLink to="/build" onClick={closeMenu}>Build</NavLink>
+          </div>
+        </div>
+      </nav>
+      <div id="fab-menu-toggle" className="fab-menu-button" onClick={toggleMenu}>
+        <i id="fab-icon" className={`fas ${menuActive ? 'fa-times' : 'fa-bars'}`}></i>
+      </div>
+    </>
+  );
 };
 
 export default Navbar;
