@@ -37,6 +37,30 @@ const Navbar = () => {
 
   return (
     <>
+      <nav className="desktop-navbar">
+        <div className="desktop-navbar-content">
+          <NavLink to="/" className="desktop-logo">
+            <img src="/img/logo.png" alt="Logo" />
+            <span>HorizonDroid</span>
+          </NavLink>
+          
+          <div className="desktop-nav">
+            <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+              <i className="fas fa-home"></i>
+              <span>Home</span>
+            </NavLink>
+            <NavLink to="/downloads" className={({ isActive }) => isActive ? 'active' : ''}>
+              <i className="fas fa-download"></i>
+              <span>Downloads</span>
+            </NavLink>
+            <NavLink to="/build" className={({ isActive }) => isActive ? 'active' : ''}>
+              <i className="fas fa-code"></i>
+              <span>Build Guide</span>
+            </NavLink>
+          </div>
+        </div>
+      </nav>
+
       <div className="mobile-header">
         <div className="mobile-header-content">
           <NavLink to="/" className="mobile-logo" onClick={closeMenu}>
