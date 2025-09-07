@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/Navbar.css';
@@ -57,7 +56,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/build" className={({ isActive }) => isActive ? 'active' : ''}>
               <i className="fas fa-code"></i>
-              <span>Build Guide</span>
+              <span>Build</span>
             </NavLink>
           </div>
         </div>
@@ -99,7 +98,7 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/build" onClick={closeMenu}>
             <i className="fas fa-code"></i>
-            <span>Build Guide</span>
+            <span>Build</span>
           </NavLink>
         </nav>
 
