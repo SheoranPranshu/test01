@@ -12,7 +12,7 @@
     --danger: #ef4444;
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f1f5f9 100%);
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
     --border-color: #e2e8f0;
     --border-color-light: #f1f5f9;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
