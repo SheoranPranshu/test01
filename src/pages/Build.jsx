@@ -1,29 +1,58 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useRef, useState } from 'react';
 import '../components/css/Build.css';
 
 const Build = () => {
+    const [isVisible, setIsVisible] = useState({});
+    const observerRef = useRef(null);
+
     useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
+        observerRef.current = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(prev => ({
+                            ...prev,
+                            [entry.target.id]: true
+                        }));
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '50px'
+            }
+        );
+
+        const sections = document.querySelectorAll('.build-section');
+        sections.forEach((section, index) => {
+            section.id = `build-section-${index}`;
+            if (observerRef.current) {
+                observerRef.current.observe(section);
+            }
         });
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+        };
     }, []);
 
     return (
         <div className="page-content" id="build">
             <div className="container">
                 <div className="section">
-                    <div className="build-content" data-aos="fade-up">
-                        <div className="build-section">
+                    <div className="build-content">
+                        
+                        {/* Header Section */}
+                        <div className="build-section fade-in">
                             <h1>Looking for building/maintaining?</h1>
                         </div>
                         
-                        <div className="build-section" data-aos="fade-up" data-aos-delay="100">
+                        {/* Source Section */}
+                        <div className="build-section slide-in-right">
                             <h2>
-                                <i className="fas fa-code-branch"></i> Source
+                                <i className="fas fa-code-branch icon-shimmer"></i> Source
                             </h2>
                             <p>
                                 You can get source by searching <b>
@@ -40,11 +69,12 @@ const Build = () => {
                         
                         <hr />
                         
-                        <div className="build-section" data-aos="fade-up" data-aos-delay="200">
+                        {/* Building Guide Section */}
+                        <div className="build-section fade-in">
                             <h2>
-                                <i className="fas fa-book"></i> Building Guide
+                                <i className="fas fa-book icon-bounce"></i> Building Guide
                             </h2>
-                            <p>Here's a tutorial on making custom ROM for beginners.</p>
+                            <p>Here's a comprehensive tutorial on creating custom ROMs for beginners and advanced users.</p>
                             <a 
                                 href="https://www.youtube.com/playlist?list=PLrDdnF-jkUITWPgIDbmKuYrNgybmLM4WR" 
                                 target="_blank" 
@@ -55,9 +85,10 @@ const Build = () => {
                             </a>
                         </div>
                         
-                        <div className="build-section" data-aos="fade-up" data-aos-delay="300">
+                        {/* Maintainership Requirements */}
+                        <div className="build-section slide-in-right">
                             <h2>
-                                <i className="fas fa-tasks"></i> Maintainership Requirements
+                                <i className="fas fa-tasks icon-shimmer"></i> Maintainership Requirements
                             </h2>
                             <div className="requirements-box">
                                 <p>To become an official maintainer for HorizonDroid, you must meet the following requirements:</p>
@@ -75,9 +106,10 @@ const Build = () => {
                             </div>
                         </div>
 
-                        <div className="build-section" data-aos="fade-up" data-aos-delay="400">
+                        {/* Device Requirements */}
+                        <div className="build-section fade-in">
                             <h2>
-                                <i className="fas fa-tasks"></i> Device Requirements
+                                <i className="fas fa-mobile-alt icon-bounce"></i> Device Requirements
                             </h2>
                             <div className="requirements-box">
                                 <ul>
@@ -129,9 +161,10 @@ const Build = () => {
                             </div>
                         </div>
 
-                        <div className="build-section" data-aos="fade-up" data-aos-delay="500">
+                        {/* Application Section */}
+                        <div className="build-section slide-in-right">
                             <h2>
-                                <i className="fas fa-check-circle"></i> Eligible?
+                                <i className="fas fa-check-circle icon-shimmer"></i> Eligible?
                             </h2>
                             <p>If you meet all the requirements, you can apply to become an official maintainer.</p>
                             <a 
