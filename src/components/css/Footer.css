@@ -1,39 +1,84 @@
-/* src/components/Footer.css */
-
 .footer {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 0 30px;
+    margin-top: 80px;
     text-align: center;
-    padding: 40px 0 20px;
-    color: #aaa;
-    font-size: 1.1rem;
 }
 
-body.light-theme .footer {
-    color: var(--light-secondary);
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .great-day {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--accent);
-    animation: float 4s ease-in-out infinite;
-}
-
-body.light-theme .great-day {
-    background: linear-gradient(to right, var(--primary), var(--secondary));
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #fff, #f8faff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
 }
 
 .credit {
-    margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .credit a {
-    color: var(--accent);
+    color: white;
     text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-body.light-theme .credit a {
-    color: var(--primary);
+.credit a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 0 20px;
+    }
+    
+    .great-day {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .credit {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
 }
