@@ -73,23 +73,9 @@
 }
 
 .desktop-nav a.active {
-    background: rgba(147, 51, 234, 0.2);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #9333ea;
     color: #a855f7;
-}
-
-.desktop-nav a.active::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #9333ea, #a855f7, #c084fc);
-    border-radius: 15px;
-    z-index: -1;
 }
 
 .desktop-nav a i {
