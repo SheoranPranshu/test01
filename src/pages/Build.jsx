@@ -1,41 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../components/css/Build.css';
 
 const Build = () => {
-    const [isVisible, setIsVisible] = useState({});
-    const observerRef = useRef(null);
-
     useEffect(() => {
-        observerRef.current = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(prev => ({
-                            ...prev,
-                            [entry.target.id]: true
-                        }));
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '50px'
-            }
-        );
-
         const sections = document.querySelectorAll('.build-section');
         sections.forEach((section, index) => {
-            section.id = `build-section-${index}`;
-            if (observerRef.current) {
-                observerRef.current.observe(section);
-            }
+            setTimeout(() => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }, index * 100);
         });
-
-        return () => {
-            if (observerRef.current) {
-                observerRef.current.disconnect();
-            }
-        };
     }, []);
 
     return (
@@ -45,14 +19,14 @@ const Build = () => {
                     <div className="build-content">
                         
                         {/* Header Section */}
-                        <div className="build-section fade-in">
+                        <div className="build-section">
                             <h1>Looking for building/maintaining?</h1>
                         </div>
                         
                         {/* Source Section */}
-                        <div className="build-section slide-in-right">
+                        <div className="build-section">
                             <h2>
-                                <i className="fas fa-code-branch icon-shimmer"></i> Source
+                                <i className="fas fa-code-branch"></i> Source
                             </h2>
                             <p>
                                 You can get source by searching <b>
@@ -70,9 +44,9 @@ const Build = () => {
                         <hr />
                         
                         {/* Building Guide Section */}
-                        <div className="build-section fade-in">
+                        <div className="build-section">
                             <h2>
-                                <i className="fas fa-book icon-bounce"></i> Building Guide
+                                <i className="fas fa-book"></i> Building Guide
                             </h2>
                             <p>Here's a comprehensive tutorial on creating custom ROMs for beginners and advanced users.</p>
                             <a 
@@ -86,9 +60,9 @@ const Build = () => {
                         </div>
                         
                         {/* Maintainership Requirements */}
-                        <div className="build-section slide-in-right">
+                        <div className="build-section">
                             <h2>
-                                <i className="fas fa-tasks icon-shimmer"></i> Maintainership Requirements
+                                <i className="fas fa-tasks"></i> Maintainership Requirements
                             </h2>
                             <div className="requirements-box">
                                 <p>To become an official maintainer for HorizonDroid, you must meet the following requirements:</p>
@@ -107,11 +81,12 @@ const Build = () => {
                         </div>
 
                         {/* Device Requirements */}
-                        <div className="build-section fade-in">
+                        <div className="build-section">
                             <h2>
-                                <i className="fas fa-mobile-alt icon-bounce"></i> Device Requirements
+                                <i className="fas fa-mobile-alt"></i> Device Requirements
                             </h2>
                             <div className="requirements-box">
+                                <p>All devices must meet these technical requirements:</p>
                                 <ul>
                                     <li>All devices <b>MUST</b> support audio playback for media content.</li>
                                     <li>Phones <b>MUST</b> support in-call audio.</li>
@@ -162,9 +137,9 @@ const Build = () => {
                         </div>
 
                         {/* Application Section */}
-                        <div className="build-section slide-in-right">
+                        <div className="build-section">
                             <h2>
-                                <i className="fas fa-check-circle icon-shimmer"></i> Eligible?
+                                <i className="fas fa-check-circle"></i> Eligible?
                             </h2>
                             <p>If you meet all the requirements, you can apply to become an official maintainer.</p>
                             <a 
