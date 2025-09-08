@@ -12,98 +12,17 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.desktop-navbar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 25px;
-    padding: 2px;
-    background: linear-gradient(135deg, 
-        transparent 0%, 
-        rgba(138, 43, 226, 0.8) 25%, 
-        rgba(147, 51, 234, 1) 50%, 
-        rgba(168, 85, 247, 0.8) 75%, 
-        transparent 100%
-    );
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .desktop-navbar:hover {
     transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(147, 51, 234, 0.3);
-}
-
-.desktop-navbar:hover::before {
-    opacity: 1;
-    animation: borderGlow 2s linear infinite;
-}
-
-@keyframes borderGlow {
-    0% {
-        background: linear-gradient(135deg, 
-            rgba(138, 43, 226, 0.8) 0%, 
-            rgba(147, 51, 234, 1) 25%, 
-            rgba(168, 85, 247, 0.8) 50%, 
-            transparent 75%, 
-            transparent 100%
-        );
-    }
-    25% {
-        background: linear-gradient(135deg, 
-            transparent 0%, 
-            rgba(138, 43, 226, 0.8) 25%, 
-            rgba(147, 51, 234, 1) 50%, 
-            rgba(168, 85, 247, 0.8) 75%, 
-            transparent 100%
-        );
-    }
-    50% {
-        background: linear-gradient(135deg, 
-            transparent 0%, 
-            transparent 25%, 
-            rgba(138, 43, 226, 0.8) 50%, 
-            rgba(147, 51, 234, 1) 75%, 
-            rgba(168, 85, 247, 0.8) 100%
-        );
-    }
-    75% {
-        background: linear-gradient(135deg, 
-            rgba(168, 85, 247, 0.8) 0%, 
-            transparent 25%, 
-            transparent 50%, 
-            rgba(138, 43, 226, 0.8) 75%, 
-            rgba(147, 51, 234, 1) 100%
-        );
-    }
-    100% {
-        background: linear-gradient(135deg, 
-            rgba(147, 51, 234, 1) 0%, 
-            rgba(168, 85, 247, 0.8) 25%, 
-            transparent 50%, 
-            transparent 75%, 
-            rgba(138, 43, 226, 0.8) 100%
-        );
-    }
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .desktop-navbar-content {
     display: flex;
     align-items: center;
     gap: 40px;
-    position: relative;
-    z-index: 1;
 }
 
 .desktop-logo {
@@ -115,22 +34,15 @@
     font-size: 1.4rem;
     font-weight: 700;
     transition: var(--transition);
-    position: relative;
 }
 
 .desktop-logo:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
 }
 
 .desktop-logo img {
     height: 32px;
     animation: float 3s ease-in-out infinite;
-    transition: all 0.3s ease;
-}
-
-.desktop-logo:hover img {
-    filter: drop-shadow(0 0 15px rgba(147, 51, 234, 0.8));
 }
 
 .desktop-nav {
@@ -151,82 +63,28 @@
     border-radius: 15px;
     transition: var(--transition);
     position: relative;
-    overflow: hidden;
-}
-
-.desktop-nav a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(147, 51, 234, 0.3), 
-        transparent
-    );
-    transition: left 0.5s ease;
 }
 
 .desktop-nav a:hover,
 .desktop-nav a.active {
     color: white;
-    background: rgba(147, 51, 234, 0.2);
-    border: 1px solid rgba(147, 51, 234, 0.4);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
-}
-
-.desktop-nav a:hover::before {
-    left: 100%;
 }
 
 .desktop-nav a.active {
-    background: rgba(147, 51, 234, 0.3);
-    border: 1px solid rgba(147, 51, 234, 0.6);
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4), inset 0 0 20px rgba(147, 51, 234, 0.1);
-}
-
-.desktop-nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #9333ea, transparent);
-    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #9333ea, #a855f7, #c084fc) 1;
 }
 
 .desktop-nav a i {
     font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.desktop-nav a:hover i,
-.desktop-nav a.active i {
-    color: #a855f7;
-    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.8));
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-6px); }
-}
-
-@keyframes purplePulse {
-    0%, 100% { 
-        box-shadow: 0 0 20px rgba(147, 51, 234, 0.4), inset 0 0 20px rgba(147, 51, 234, 0.1); 
-    }
-    50% { 
-        box-shadow: 0 0 30px rgba(147, 51, 234, 0.6), inset 0 0 30px rgba(147, 51, 234, 0.2); 
-    }
-}
-
-.desktop-nav a.active {
-    animation: purplePulse 2s ease-in-out infinite;
 }
 
 .sidebar {
@@ -304,15 +162,14 @@
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
-    background: rgba(147, 51, 234, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     transform: translateX(5px);
-    border: 1px solid rgba(147, 51, 234, 0.3);
 }
 
 .sidebar-nav a:hover::before,
 .sidebar-nav a.active::before {
-    background: linear-gradient(180deg, #9333ea, #a855f7);
+    background: linear-gradient(180deg, #00c9ff, #92fe9d);
 }
 
 .sidebar-nav a i {
@@ -373,8 +230,7 @@
 }
 
 .hamburger:hover {
-    background: rgba(147, 51, 234, 0.2);
-    border: 1px solid rgba(147, 51, 234, 0.3);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger span {
@@ -389,7 +245,6 @@
 
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
-    background: #a855f7;
 }
 
 .hamburger.active span:nth-child(2) {
@@ -398,5 +253,4 @@
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
-    background: #a855f7;
 }
