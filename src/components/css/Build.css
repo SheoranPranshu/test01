@@ -1,72 +1,118 @@
 .build-content {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 0;
 }
 
 .build-section {
-    margin-bottom: 60px;
-    animation: fadeInUp 0.6s ease-out;
-    will-change: opacity, transform;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.build-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-purple);
+    border-radius: 20px 20px 0 0;
+}
+
+.build-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.build-section:first-child {
+    background: var(--gradient-purple);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    margin-bottom: 40px;
+}
+
+.build-section:first-child::before {
+    display: none;
 }
 
 .build-section h1 {
-    font-size: 3rem;
-    margin-bottom: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: white;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
     font-weight: 800;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .build-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--primary);
     display: flex;
     align-items: center;
     gap: 15px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     padding-bottom: 15px;
-    border-bottom: 3px solid transparent;
-    border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
+    border-bottom: 2px solid var(--purple-light);
     position: relative;
 }
 
 .build-section h2::after {
     content: '';
     position: absolute;
-    bottom: -3px;
+    bottom: -2px;
     left: 0;
     width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 2px;
+    height: 2px;
+    background: var(--gradient-purple);
+    border-radius: 1px;
 }
 
 .build-section h2 i {
     color: var(--primary);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     min-width: 24px;
     transition: var(--transition);
+    padding: 10px;
+    background: var(--gradient-purple-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
 }
 
 .build-section:hover h2 i {
-    transform: scale(1.1);
-    color: var(--secondary);
+    transform: scale(1.1) rotate(5deg);
+    background: var(--gradient-purple);
+    color: white;
 }
 
 .build-section p {
-    line-height: 1.8;
-    margin-bottom: 25px;
+    line-height: 1.7;
+    margin-bottom: 20px;
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    max-width: 800px;
+    font-size: 1.05rem;
+    max-width: 100%;
 }
 
 .build-section a:not(.btn) {
@@ -75,65 +121,42 @@
     font-weight: 600;
     position: relative;
     transition: var(--transition);
-}
-
-.build-section a:not(.btn)::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    transition: var(--transition);
-}
-
-.build-section a:not(.btn):hover::after {
-    width: 100%;
+    padding: 2px 6px;
+    border-radius: 6px;
 }
 
 .build-section a:not(.btn):hover {
+    background: var(--gradient-purple-light);
     color: var(--secondary);
+    transform: translateY(-1px);
 }
 
 .build-section ul {
-    margin: 30px 0;
+    margin: 25px 0;
     padding-left: 0;
     list-style: none;
-    max-width: 800px;
+    display: grid;
+    gap: 15px;
 }
 
 .build-section li {
-    margin-bottom: 20px;
-    line-height: 1.7;
     color: var(--text-secondary);
-    padding-left: 35px;
+    padding: 15px;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
     position: relative;
-    transition: var(--transition-fast);
-    font-size: 1rem;
-}
-
-.build-section li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 2px;
-    color: var(--success);
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(16, 185, 129, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .build-section li:hover {
+    background: var(--gradient-purple-light);
     color: var(--text-primary);
-    transform: translateX(8px);
+    transform: translateX(5px);
+    border-left-color: var(--secondary);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
 }
 
 .build-section li b {
@@ -141,59 +164,57 @@
     font-weight: 700;
 }
 
+.build-section li:hover b {
+    color: var(--secondary);
+}
+
 .requirements-box {
-    margin-top: 30px;
+    margin-top: 25px;
     padding: 0;
 }
 
-.requirements-box p {
+.requirements-box > p:first-child {
     font-size: 1.1rem;
     color: var(--text-primary);
-    margin-bottom: 30px;
-    font-weight: 500;
+    margin-bottom: 25px;
+    font-weight: 600;
+    padding: 20px;
+    background: var(--gradient-purple-light);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
 }
 
 .build-content hr {
     border: none;
-    height: 2px;
-    background: linear-gradient(to right, transparent, rgba(102, 126, 234, 0.3), transparent);
-    margin: 60px 0;
-    position: relative;
-}
-
-.build-content hr::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--bg-primary);
+    height: 1px;
+    background: var(--gradient-purple);
+    margin: 40px 0;
+    border-radius: 1px;
+    opacity: 0.3;
 }
 
 .build-section .btn {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-purple);
     color: white;
-    padding: 18px 36px;
-    border-radius: 12px;
+    padding: 16px 32px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
     transition: var(--transition);
     border: none;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
     margin-top: 25px;
     position: relative;
     overflow: hidden;
     text-transform: none;
     letter-spacing: 0.025em;
+    min-width: 180px;
+    justify-content: center;
 }
 
 .build-section .btn::before {
@@ -208,10 +229,10 @@
 }
 
 .build-section .btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
     text-decoration: none;
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: var(--gradient-purple-hover);
 }
 
 .build-section .btn:hover::before {
@@ -219,7 +240,7 @@
 }
 
 .build-section .btn:active {
-    transform: translateY(-2px);
+    transform: translateY(-1px) scale(1.01);
     transition: var(--transition-fast);
 }
 
@@ -230,122 +251,146 @@
 
 .build-section .btn i.fas.fa-file-alt {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 1200px) {
+    .requirements-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .requirements-grid .build-section {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 768px) {
     .build-content {
-        padding: 30px 15px;
+        padding: 0 15px;
     }
     
     .build-section {
-        margin-bottom: 50px;
+        margin-bottom: 25px;
+        padding: 30px 25px;
+        border-radius: 15px;
+    }
+    
+    .build-section:first-child {
+        padding: 40px 25px;
     }
     
     .build-section h1 {
         font-size: 2.5rem;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
         line-height: 1.1;
     }
     
     .build-section h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         flex-wrap: wrap;
         gap: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
+    }
+    
+    .build-section h2 i {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
     }
     
     .build-section p {
         font-size: 1rem;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .build-section ul {
-        margin: 25px 0;
+        margin: 20px 0;
+        gap: 12px;
     }
     
     .build-section li {
-        margin-bottom: 18px;
-        padding-left: 30px;
-        font-size: 0.95rem;
+        padding: 12px;
+        font-size: 0.9rem;
     }
     
     .build-section .btn {
-        padding: 16px 28px;
+        padding: 14px 28px;
         font-size: 0.95rem;
         width: 100%;
-        justify-content: center;
         margin-top: 20px;
-    }
-    
-    .build-content hr {
-        margin: 50px 0;
     }
 }
 
 @media (max-width: 480px) {
-    .build-content {
-        padding: 25px 10px;
+    .build-section {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+    
+    .build-section:first-child {
+        padding: 35px 20px;
     }
     
     .build-section h1 {
         font-size: 2.2rem;
         line-height: 1.1;
-        margin-bottom: 35px;
+        margin-bottom: 12px;
     }
     
     .build-section h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         gap: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .build-section h2 i {
-        font-size: 1.3rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
     }
     
     .build-section p {
         font-size: 0.95rem;
-        margin-bottom: 18px;
-    }
-    
-    .build-section li {
-        font-size: 0.9rem;
-        padding-left: 28px;
         margin-bottom: 16px;
     }
     
-    .build-section .btn {
-        padding: 14px 24px;
-        font-size: 0.9rem;
-        border-radius: 10px;
+    .build-section li {
+        padding: 10px;
+        font-size: 0.85rem;
     }
     
-    .build-content hr {
-        margin: 40px 0;
+    .build-section .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        border-radius: 25px;
+    }
+    
+    .requirements-box > p:first-child {
+        padding: 15px;
+        font-size: 1rem;
     }
 }
 
 .build-section .btn:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 3px solid rgba(99, 102, 241, 0.5);
     outline-offset: 2px;
 }
 
 .build-section {
     contain: layout style;
+    will-change: transform;
 }
 
-.build-section:nth-child(1) { animation-delay: 0ms; }
-.build-section:nth-child(2) { animation-delay: 100ms; }
-.build-section:nth-child(3) { animation-delay: 200ms; }
-.build-section:nth-child(4) { animation-delay: 300ms; }
-.build-section:nth-child(5) { animation-delay: 400ms; }
-.build-section:nth-child(6) { animation-delay: 500ms; }
+.build-section {
+    animation: none;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
 
-.build-section a {
+.build-section * {
     transition: var(--transition);
-}
-
-.fade-in, .slide-in-right {
-    animation: fadeInUp 0.8s ease-out forwards;
 }
