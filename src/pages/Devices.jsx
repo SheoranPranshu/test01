@@ -15,7 +15,7 @@ const Devices = () => {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await fetch('../../dinfo.json');
+        const response = await fetch('https://github.com/SheoranPranshu/test01/raw/refs/heads/main/dinfo.json');
         const data = await response.json();
         setDevices(data.devices || []);
       } catch (err) {
