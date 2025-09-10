@@ -76,8 +76,9 @@ const Devices = () => {
   const filteredDevices = devices.filter(device => {
     const matchesCompany = filterCompany === 'all' || device.company === filterCompany;
     const matchesStatus = filterStatus === 'all' || device.status === filterStatus;
-    const matchesSearch = device.device_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         device.codename.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      (device.device_name && device.device_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (device.codename && device.codename.toLowerCase().includes(searchTerm.toLowerCase()));
     
     return matchesCompany && matchesStatus && matchesSearch;
   });
@@ -127,12 +128,10 @@ const Devices = () => {
   return (
     <div className="devices-page">
       <div className="container">
-        {/* Header Section */}
         <div className="devices-header">
           <h1 className="section-title">Supported Devices</h1>
           <p className="devices-subtitle">Choose your device and start your HorizonDroid journey</p>
           
-          {/* Filters and Search */}
           <div className="devices-controls">
             <div className="search-container">
               <input
@@ -170,18 +169,17 @@ const Devices = () => {
           </div>
         </div>
 
-        {/* Devices Grid */}
         <div className="devices-grid">
           {filteredDevices.map((device, index) => (
             <div
-              key={device.codename}
+              key={device.codename || index}
               className="device-card"
               onClick={() => handleDeviceClick(device)}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ animationDelay: `${index * 0.06}s` }}
             >
               <div className="device-image">
                 {device.image_url ? (
-                  <img src={device.image_url} alt={device.device_name} />
+                  <img src={device.image_url} alt={device.device_name || device.codename} />
                 ) : (
                   <div className="device-placeholder">
                     <span>📱</span>
@@ -191,8 +189,10 @@ const Devices = () => {
               
               <div className="device-info">
                 <h3 className="device-name">{device.device_name}</h3>
-                <p className="device-codename">{device.codename}</p>
-                <p className="device-maintainer">Maintainer: {device.maintainer}</p>
+                <p className="device-codename"><span className="codename-text">{device.codename}</span></p>
+                <p className="device-maintainer">
+                  Maintainer: <span className="maintainer-name">{device.maintainer || 'Unknown'}</span>
+                </p>
                 
                 {device.status && (
                   <span className={`device-status status-${device.status}`}>
@@ -212,7 +212,6 @@ const Devices = () => {
         )}
       </div>
 
-      {/* Device Details Modal */}
       {selectedDevice && (
         <div className="device-modal-overlay" onClick={closeDeviceDetails}>
           <div className="device-modal" onClick={e => e.stopPropagation()}>
@@ -229,8 +228,8 @@ const Devices = () => {
                 </div>
               ) : deviceDetails && deviceDetails.length > 0 ? (
                 <div className="device-variants">
-                  {deviceDetails.map((variant, index) => (
-                    <div key={index} className="variant-card">
+                  {deviceDetails.map((variant, idx) => (
+                    <div key={idx} className="variant-card">
                       <div className="variant-header">
                         <h3>{variant.variant} Variant</h3>
                         <span className="build-type">{variant.buildtype}</span>
