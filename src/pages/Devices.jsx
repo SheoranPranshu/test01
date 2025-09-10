@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Devices.css';
+import '../components/css/Devices.css';
 
 const Devices = () => {
   const [devices, setDevices] = useState([]);
