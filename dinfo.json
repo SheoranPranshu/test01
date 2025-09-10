@@ -1,0 +1,49 @@
+{
+  "devices": [
+    {
+      "device_name": "Google Pixel 6",
+      "codename": "oriole",
+      "maintainer": "rmp22",
+      "status": "active",
+      "company": "Google",
+      "support_group": "https://t.me/AxionAOSP_PixelsSupport",
+      "image_url": "https://wiki.lineageos.org/images/devices/oriole.png"
+    },
+    {
+      "device_name": "Mi 10T/Mi 10T pro",
+      "codename": "apollo",
+      "maintainer": "Murtaza Kolachi",
+      "status": "inactive"
+      "company": "ximi"
+      "support_group": "https://t.me/Murtazasapollocommunity",
+      "image_url": "https://www.bug.hr/img/xiaomi-mi-10t-serija-telefona-za-kreativce_oFqltN.png"
+    },
+    {
+      "device_name": "Mi 9T",
+      "codename": "davinci", 
+      "maintainer": "superxorn",
+      "status": "active",
+      "company": "Xiaomi",
+      "support_group": "https://t.me/superxornplayground",
+      "image_url": "https://wiki.lineageos.org/images/devices/davinci.png"
+    },
+    {
+      "device_name": "OnePlus 9",
+      "codename": "lemonade",
+      "maintainer": "john_doe", 
+      "status": "inactive",
+      "company": "OnePlus",
+      "support_group": "https://t.me/oneplus9_support",
+      "image_url": "https://wiki.lineageos.org/images/devices/lemonade.png"
+    },
+    {
+      "device_name": "Samsung Galaxy S21",
+      "codename": "o1s",
+      "maintainer": "samsung_dev",
+      "status": "discontinued", 
+      "company": "Samsung",
+      "support_group": "https://t.me/galaxys21_support",
+      "image_url": "https://wiki.lineageos.org/images/devices/o1s.png"
+    }
+  ]
+}
