@@ -15,7 +15,7 @@ const Devices = () => {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await fetch('https://github.com/SheoranPranshu/test01/raw/refs/heads/main/dinfo.json');
+        const response = await fetch('https://raw.githubusercontent.com/SheoranPranshu/test01/main/dinfo.json');
         const data = await response.json();
         setDevices(data.devices || []);
       } catch (err) {
@@ -34,7 +34,7 @@ const Devices = () => {
       const variants = [];
       
       try {
-        const gappsResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/refs/heads/lineage-22.2/GAPPS/${codename}.json`);
+        const gappsResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/GAPPS/${codename}.json`);
         if (gappsResponse.ok) {
           const gappsData = await gappsResponse.json();
           variants.push({ variant: 'GAPPS', ...gappsData.response[0] });
@@ -44,7 +44,7 @@ const Devices = () => {
       }
 
       try {
-        const vanillaResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/refs/heads/lineage-22.2/VANILLA/${codename}.json`);
+        const vanillaResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/VANILLA/${codename}.json`);
         if (vanillaResponse.ok) {
           const vanillaData = await vanillaResponse.json();
           variants.push({ variant: 'VANILLA', ...vanillaData.response[0] });
