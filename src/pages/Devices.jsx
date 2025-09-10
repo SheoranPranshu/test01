@@ -16,10 +16,13 @@ const Devices = () => {
     const fetchDevices = async () => {
       try {
         const response = await fetch('https://raw.githubusercontent.com/SheoranPranshu/test01/main/dinfo.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setDevices(data.devices || []);
       } catch (err) {
-        setError('Failed to fetch devices');
+        setError('Failed to fetch devices. Please check the data source and your network connection.');
       } finally {
         setLoading(false);
       }
@@ -30,32 +33,31 @@ const Devices = () => {
 
   const fetchDeviceDetails = async (codename) => {
     setLoadingDetails(true);
+    setDeviceDetails(null);
+    setError(null);
+
     try {
       const variants = [];
 
-      try {
-        const gappsResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/GAPPS/${codename}.json`);
-        if (gappsResponse.ok) {
-          const gappsData = await gappsResponse.json();
-          variants.push({ variant: 'GAPPS', ...gappsData.response[0] });
+      const gappsResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/GAPPS/${codename}.json`);
+      if (gappsResponse.ok) {
+        const gappsData = await gappsResponse.json();
+        if (gappsData?.response?.[0]) {
+            variants.push({ variant: 'GAPPS', ...gappsData.response[0] });
         }
-      } catch (err) {
-        console.log('GAPPS variant not found');
       }
 
-      try {
-        const vanillaResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/VANILLA/${codename}.json`);
-        if (vanillaResponse.ok) {
-          const vanillaData = await vanillaResponse.json();
-          variants.push({ variant: 'VANILLA', ...vanillaData.response[0] });
+      const vanillaResponse = await fetch(`https://raw.githubusercontent.com/HorizonV2/OTA/lineage-22.2/VANILLA/${codename}.json`);
+      if (vanillaResponse.ok) {
+        const vanillaData = await vanillaResponse.json();
+        if (vanillaData?.response?.[0]) {
+            variants.push({ variant: 'VANILLA', ...vanillaData.response[0] });
         }
-      } catch (err) {
-        console.log('VANILLA variant not found');
       }
 
       setDeviceDetails(variants);
     } catch (err) {
-      setError('Failed to fetch device details');
+      setError('Failed to fetch device details. The ROM may not be available for this device.');
     } finally {
       setLoadingDetails(false);
     }
@@ -83,7 +85,7 @@ const Devices = () => {
   });
 
   const formatFileSize = (bytes) => {
-    if (!bytes) return 'Unknown';
+    if (!bytes || bytes === 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -91,7 +93,7 @@ const Devices = () => {
   };
 
   const formatDate = (timestamp) => {
-    if (!timestamp) return 'Unknown';
+    if (!timestamp) return 'N/A';
     return new Date(timestamp * 1000).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -112,7 +114,7 @@ const Devices = () => {
     );
   }
 
-  if (error) {
+  if (error && !selectedDevice) {
     return (
       <div className="devices-page">
         <div className="container">
@@ -204,7 +206,7 @@ const Devices = () => {
           ))}
         </div>
 
-        {filteredDevices.length === 0 && (
+        {filteredDevices.length === 0 && !loading && (
           <div className="no-devices">
             <h3>No devices found</h3>
             <p>Try adjusting your search or filter criteria</p>
@@ -304,6 +306,7 @@ const Devices = () => {
                 <div className="no-variants">
                   <h3>No ROM variants available</h3>
                   <p>This device doesn't have any ROM builds available yet.</p>
+                  {error && <p className="error-message">{error}</p>}
                 </div>
               )}
             </div>
